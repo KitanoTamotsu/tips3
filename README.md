@@ -166,4 +166,6 @@ result( $int.'.'.time(), "$data", "$data", 'Search Google for '.$data, 'icon.png
 とすると、Alfred用のXMLをechoすれば、出力インターフェースが表示されるのかな
 なんとなく理解できました
 
+現在JSONが推奨とのことなのでJSONで試してみました
+https://github.com/KitanoTamotsu/testjson
 
