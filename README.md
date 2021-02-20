@@ -8,9 +8,9 @@ require_once('workflows.php');
 $wf = new Workflows();
 </pre>
 
-ソースのはじめは、$wfをWorkflowsオブジェクトとしてクリエイトしている感じですね。
+$wfをWorkflowsオブジェクトとしてクリエイトしている感じですね。
 workflows.phpには、workflowsオブジェクトのクラスが記述されているのでしょう。
-雰囲気を掴みたいだけなのでスルーします。
+雰囲気を掴みたいだけなので探したりせずにスルーします。
 
 <pre>
 $orig = $argv[1];
@@ -22,9 +22,8 @@ $xml = simplexml_load_string( utf8_encode($xml) );
 
 https://suggestqueries.google.com/complete/search?output=toolbar&q=
 このアドレスでgoogle suggestのxmlが取得できるのでしょう。
-ターミナルでopenしてみたら、思った通り下記のxmlが帰ってきました
-ちょっと長いですが全部コピペします
-因みにq=alfredとして検索しています
+さっそくターミナルでopenしてみましょう。思った通り下記のxmlが帰ってきました。
+ちょっと長いですが全部コピペします。因みにq=alfredとして検索しています
 
 <pre>
 &lt?xml version="1.0"?&gt
@@ -89,8 +88,8 @@ endif;
 echo $wf->toxml();
 </pre>
 
-上記で作成したリターンからAlfred用のXMLを整形しているようです。
-デバッグしてみたらAlfred用のXMLをみることができました。
+最後に作成したリターンからAlfred用のXMLを生成後echoしているようです。
+今度はアフルのデバッグを使ってみたらAlfred用のXMLをみることができました。
 コピペします。
 なお、XMLは1文字入力するごとに作成されます。というか、1文字入力するごとにgoogle suggestが起動されるようです。まぁAlfredがインクリメンタルサーチなので当然か。
 
