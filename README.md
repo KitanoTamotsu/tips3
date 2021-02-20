@@ -61,7 +61,7 @@ https://suggestqueries.google.com/complete/search?output=toolbar&q=
     &lt/CompleteSuggestion&gt
 &lt/toplevel&gt</Pre>
 
-構造は簡単ですね。dataの中にキーワードと関連する検索ワードが10個列挙されるようです。
+構造は簡単ですね。dataの中にキーワードと関連する検索ワードをリターンさせて、それが10個列挙されるようです。
 なお、suggestqueries.google.comをgoogle.comに変更しても、現状では同じxmlが帰ってきます。
 
 <pre>
@@ -160,11 +160,11 @@ echo $wf->toxml();
 &lt/items&gt
 </pre>
 
-確かにitemをみると以下のロジックでセットしているのですね
+確かに&ltitem&gtをみると以下のロジックでセットしていることが見て取れますね
 
 result( $int.'.'.time(), "$data", "$data", 'Search Google for '.$data, 'icon.png'  )
 
-とすると、Alfred用のXMLをechoすれば、出力インターフェースが表示されるのでしょう
+とすると、Alfred用のXMLをechoすれば、出力インターフェースが表示されるのかな
 なんとなく理解できました
 
 
