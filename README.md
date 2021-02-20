@@ -1,15 +1,16 @@
 
 ## Google suggest ワークフローを解析してみる
 
-<pre>
-phpはよく知らないのですが、気になってGoogle suggest ワークフローを動かしながら解析してみました
+###　phpはよく知らないのですが、気になってGoogle suggest ワークフローを動かしながら解析してみました
 
+<pre>
 require_once('workflows.php');
 $wf = new Workflows();
+</pre>
 
-ソースのはじめは、$wfをWorkflowsオブジェクトとしてクリエイトしている感じですね。
-workflows.phpには、workflowsオブジェクトのクラスが記述されているのでしょう。
-雰囲気を掴みたいだけなのでスルーします。
+###　ソースのはじめは、$wfをWorkflowsオブジェクトとしてクリエイトしている感じですね。
+###　workflows.phpには、workflowsオブジェクトのクラスが記述されているのでしょう。
+###　雰囲気を掴みたいだけなのでスルーします。
 
 
 $orig = $argv[1];
@@ -157,4 +158,4 @@ result( $int.'.'.time(), "$data", "$data", 'Search Google for '.$data, 'icon.png
 とすると、Alfred用のXMLをechoすれば、出力インターフェースが表示されるのでしょう
 なんとなく理解できました
 
-</pre>
+
