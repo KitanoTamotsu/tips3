@@ -27,7 +27,6 @@ https://suggestqueries.google.com/complete/search?output=toolbar&q=
 因みにq=alfredとして検索しています
 
 <pre>
-<?xml version="1.0"?>
 <toplevel>
     <CompleteSuggestion>
         <suggestion data="alfred"/>
@@ -96,7 +95,6 @@ echo $wf->toxml();
 なお、XMLは1文字入力するごとに作成されます。というか、1文字入力するごとにgoogle suggestが起動されるようです。まぁAlfredがインクリメンタルサーチなので当然か。
 
 <pre>
-<?xml version="1.0"?>
 <items>
 
  <item uid="1.1613809030" arg="alfred" valid="yes" autocomplete="">
