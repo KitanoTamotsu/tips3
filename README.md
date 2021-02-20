@@ -160,7 +160,7 @@ echo $wf->toxml();
 &lt/items&gt
 </pre>
 
-確かに&ltitem&gtをみると以下のロジックでセットしていることが見て取れますね
+確かに<titem>をみると以下のロジックでセットしていることが見て取れますね
 
 result( $int.'.'.time(), "$data", "$data", 'Search Google for '.$data, 'icon.png'  )
 
