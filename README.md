@@ -1,21 +1,22 @@
 
 ## Google suggest ワークフローを解析してみる
 
-###　phpはよく知らないのですが、気になってGoogle suggest ワークフローを動かしながら解析してみました
+phpはよく知らないのですが、気になってGoogle suggest ワークフローを動かしながら解析してみました
 
 <pre>
 require_once('workflows.php');
 $wf = new Workflows();
 </pre>
 
-###　ソースのはじめは、$wfをWorkflowsオブジェクトとしてクリエイトしている感じですね。
-###　workflows.phpには、workflowsオブジェクトのクラスが記述されているのでしょう。
-###　雰囲気を掴みたいだけなのでスルーします。
+ソースのはじめは、$wfをWorkflowsオブジェクトとしてクリエイトしている感じですね。
+workflows.phpには、workflowsオブジェクトのクラスが記述されているのでしょう。
+雰囲気を掴みたいだけなのでスルーします。
 
-
+<pre>
 $orig = $argv[1];
 $xml = $wf->request( "https://suggestqueries.google.com/complete/search?output=toolbar&q=".urlencode( $orig ) );
 $xml = simplexml_load_string( utf8_encode($xml) );
+</pre>
 
 アルフの受け渡し（argv[1]）からXMLを取得しているようですね。
 
@@ -25,6 +26,7 @@ https://suggestqueries.google.com/complete/search?output=toolbar&q=
 ちょっと長いですが全部コピペします
 因みにq=alfredとして検索しています
 
+<pre>
 <?xml version="1.0"?>
 <toplevel>
     <CompleteSuggestion>
@@ -58,10 +60,12 @@ https://suggestqueries.google.com/complete/search?output=toolbar&q=
         <suggestion data="alfredo bannister in"/>
     </CompleteSuggestion>
 </toplevel>
+</Pre>
 
 構造は簡単ですね。dataの中にキーワードと関連する検索ワードが10個列挙されるようです。
 なお、suggestqueries.google.comをgoogle.comに変更しても、現状では同じxmlが帰ってきます。
 
+<pre>
 $int = 1;
 if ($xml) {
 	foreach( $xml as $sugg ):
@@ -70,22 +74,28 @@ if ($xml) {
 		$int++;
 	endforeach;
 }
+</pre>
 
 リターンされたXMLのsuggestionタグのdata属性の内容を見て、リターンを作成しているようです。
 
+<pre>
 $results = $wf->results();
 if ( count( $results ) == 0 ):
 	$wf->result( 'googlesuggest', $orig, 'No Suggestions', 'No search suggestions found. Search Google for '.$orig, 'icon.png' );
 endif;
+</pre>
 
 こちらはリターンが何もない時のロジックのようです。まあ無視しましょう。
-
+<pre>
 echo $wf->toxml();
+</pre>
+
 上記で作成したリターンからAlfred用のXMLを整形しているようです。
 デバッグしてみたらAlfred用のXMLをみることができました。
 コピペします。
 なお、XMLは1文字入力するごとに作成されます。というか、1文字入力するごとにgoogle suggestが起動されるようです。まぁAlfredがインクリメンタルサーチなので当然か。
 
+<pre>
 <?xml version="1.0"?>
 <items>
 
@@ -150,6 +160,7 @@ echo $wf->toxml();
  </item>
 
 </items>
+</pre>
 
 確かにitemをみると以下のロジックでセットしているのですね
 
