@@ -27,7 +27,7 @@ https://suggestqueries.google.com/complete/search?output=toolbar&q=
 因みにq=alfredとして検索しています
 
 <pre>
-<toplevel>
+&lttoplevel&gt
     <CompleteSuggestion>
         <suggestion data="alfred"/>
     </CompleteSuggestion>
