@@ -1,29 +1,26 @@
 
 Google suggest ワークフローを解析してみる
-
-phpはよく知らないのですが、気になってGoogle suggest ワークフローを動かしながら解析してみました
+<br>phpはよく知らないのですが、気になってGoogle suggest ワークフローを
+<br>動かしながら解析してみました
 
 ```
 require_once('workflows.php');
 $wf = new Workflows();
 ```
-
-$wfをWorkflowsオブジェクトとしてクリエイトしている感じですね。
-workflows.phpには、workflowsオブジェクトのクラスが記述されているのでしょう。
-雰囲気を掴みたいだけなので探したりせずにスルーします。
+<br>$wfをWorkflowsオブジェクトとしてクリエイトしている感じですね。
+<br>workflows.phpには、workflowsオブジェクトのクラスが記述されているのでしょう。
+<br>雰囲気を掴みたいだけなので探したりせずにスルーします。
 
 ```
 $orig = $argv[1];
 $xml = $wf->request( "https://suggestqueries.google.com/complete/search?output=toolbar&q=".urlencode( $orig ) );
 $xml = simplexml_load_string( utf8_encode($xml) );
 ```
-
-アルフの受け渡し（argv[1]）からXMLを取得しているようですね。
-
-https://suggestqueries.google.com/complete/search?output=toolbar&q=
-このアドレスでgoogle suggestのxmlが取得できるのでしょう。
-さっそくターミナルでopenしてみましょう。思った通り下記のxmlが帰ってきました。
-ちょっと長いですが全部コピペします。因みにq=alfredとして検索しています
+<br>アルフの受け渡し（argv[1]）からXMLを取得しているようですね。
+<br>https://suggestqueries.google.com/complete/search?output=toolbar&q=
+<br>このアドレスでgoogle suggestのxmlが取得できるのでしょう。
+<br>さっそくターミナルでopenしてみましょう。思った通り下記のxmlが帰ってきました。
+<br>ちょっと長いですが全部コピペします。因みにq=alfredとして検索しています
 
 ```
 &lt?xml version="1.0"?&gt
@@ -74,8 +71,7 @@ if ($xml) {
 	endforeach;
 }
 ```
-
-リターンされたXMLのsuggestionタグのdata属性の内容を見て、リターンを作成しているようです。
+<br>リターンされたXMLのsuggestionタグのdata属性の内容を見て、リターンを作成しているようです。
 
 ```
 $results = $wf->results();
@@ -88,11 +84,11 @@ endif;
 ```
 echo $wf->toxml();
 ```
-
-最後に作成したリターンからAlfred用のXMLを生成後echoしているようです。
-今度はアフルのデバッグを使ってみたらAlfred用のXMLをみることができました。
-コピペします。
-なお、XMLは1文字入力するごとに作成されます。というか、1文字入力するごとにgoogle suggestが起動されるようです。まぁAlfredがインクリメンタルサーチなので当然か。
+<br>最後に作成したリターンからAlfred用のXMLを生成後echoしているようです。
+<br>今度はアフルのデバッグを使ってみたらAlfred用のXMLをみることができました。
+<br>コピペします。
+<br>なお、XMLは1文字入力するごとに作成されます。というか、1文字入力するごとに
+<br>google suggestが起動されるようです。まぁAlfredがインクリメンタルサーチなので当然か。
 
 ```
 &ltitems&gt
@@ -159,16 +155,16 @@ echo $wf->toxml();
 
 &lt/items&gt
 ```
-
-確かに<titem>をみると以下のロジックでセットしていることが見て取れますね
+<br>確かに<titem>をみると以下のロジックでセットしていることが見て取れますね
+	
 
 ```
 result( $int.'.'.time(), "$data", "$data", 'Search Google for '.$data, 'icon.png'  )
 ```
-	
-とすると、Alfred用のXMLをechoすれば、出力インターフェースが表示されるのかな
-なんとなく理解できました
+<br>とすると、Alfred用のXMLをechoすれば、出力インターフェースが表示されるのかな
+<br>なんとなく理解できました
 
-現在JSONが推奨とのことなのでJSONで試してみました
-https://github.com/KitanoTamotsu/testjson
+<br>
+[トップページに戻る](https://kitanotamotsu.github.io/)
+
 
